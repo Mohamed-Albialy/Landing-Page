@@ -1,0 +1,17 @@
+@use "../helpers/mixin" as *;
+@use "../helpers/variables" as *;
+
+.container {    
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0 auto;
+    @include small {
+        width: 750px;
+    }
+    @include medium{
+        width: 970px;
+    }
+    @include large {
+        width: 1170px;
+    }
+}

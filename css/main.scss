@@ -1,0 +1,10 @@
+@use "./sass/helpers/functions";
+@use "./sass/helpers/mixin" as *;
+@use "./sass/helpers/variables" as *;
+@use "./sass/layout/grid" as *;
+@use "./sass/components/sectionTitle.scss";
+
+@use "./sass/pages/globalPage";
+@use "./sass/layout/header" as *;
+@use "./sass/pages/main";
+@use "./sass/layout/footer";

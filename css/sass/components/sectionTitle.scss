@@ -1,0 +1,50 @@
+@use "../helpers/variables" as *;
+@use "../helpers/mixin" as *;
+
+.section-title {
+    h3 {
+        color: $titleColor;
+    }
+    p {
+        width: 370px;
+        max-width: 100%;
+        font-weight: 500;
+        // line-height: 1.7;
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transition: transform $transition ease-in, opacity $transition ease-in;
+    transform: translateY(100px);
+}
+
+.fade-in.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.from-left {
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: transform $transition ease-in, opacity $transition ease-in;
+}
+
+.from-right {
+    transform: translateX(50%);
+    transition: transform $transition ease-in, opacity $transition ease-in;
+    opacity: 0;
+}
+
+.from-bottom {
+    transform: translateY(100px);
+    transition: transform $transition ease-in, opacity $transition ease-in;
+    opacity: 0;
+}
+
+.from-left.appear,
+.from-right.appear,
+.from-bottom.appear {
+    transform: translate(0);
+    opacity: 1;
+}

@@ -1,0 +1,384 @@
+@use "../helpers/variables" as *;
+@use "../helpers/mixin" as *;
+@use "../pages/globalPage" as *;
+
+// start landing
+
+#Home {
+    height: 100vh;
+    transition: 1s;
+    position: relative;
+    &::after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        // make position.
+        @include position(absolute, 0, 0);
+    }
+    .slider {
+        width: 100%;
+        height: 100%;
+        .slider-images {
+            &__image {
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                opacity: 0;
+                object-fit: cover;
+                transition: 2s;
+                z-index: -1;
+                &.active {
+                    opacity: 1;
+                }
+            }
+        }
+        .slider-bullets {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            bottom: 30px;
+            z-index: 1;
+            &__bullet {
+                width: 15px;
+                height: 15px;
+                background-color: #bdbdbd;
+                border-radius: 50%;
+                margin: 3px;
+                &.active {
+                    background-color: $mainColorAlt;
+                }
+            }
+
+        }
+    }
+    .container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // make position
+        @include position(absolute, 0, 50%);
+        transform: translateX(-50%);
+        z-index: 1;
+        .info {
+            // make responsive in screen mobile which max-width 991px.
+            @include tablet {
+            }
+            .card {
+                background-color: transparent;
+                border: none;
+                h2 {
+                    color: $titleColor;
+                }
+                p {
+                    max-width: 700px;
+                    line-height: 1.7;
+                }
+                a {
+                    width: 200px;
+                    font-size: 12px;
+                    background-color: $mainColor;
+                    border: none;
+                    outline: none;
+                    &:hover {
+                        background-color: $mainColorAlt;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// end landing
+
+// start about
+
+#About {
+    // place holder to make padding top, padding bottom, and  make overflow hidden.
+    @extend %section-padding;
+    background-color: $white;
+    .container {
+        .row {
+            .col {
+                &:hover .icon {
+                    filter: blur(1px);
+                    animation: iconInOut $transition infinite;
+                    color: $mainColorAlt;
+                }
+                .icon {
+                    color: $mainColor;
+                }
+                .card-title {
+                    color: $titleColor;
+                }
+            }
+        }
+    }
+}
+
+// end about
+
+// start services
+
+#Services {
+    // place holder to make padding top, padding bottom, and  make overflow hidden.
+    @extend %section-padding;
+    background-color: $sectionColor;
+    .container {
+        .row {
+            .col {
+                .card {
+                    .number {
+                        height: 200px;
+                        font: {
+                        size: 14em;
+                        weight: 900;
+                        }
+                        color: $sectionColor;
+                        text-shadow: -1px 0 $mainColorAlt, 0 1px $mainColorAlt, 1px 0 $mainColorAlt, 0 -1px $mainColorAlt;
+                        overflow: hidden;
+                    }
+                    .card-body {
+                        .btn {
+                            color: $titleColor;
+                            padding: 10px 30px;
+                            position: relative;
+                            &:hover {
+                                animation-name: convertColorBtn;
+                                animation-duration: $transition;
+                                animation-fill-mode: both;
+                                animation-delay: $transition;
+                            }
+                            &::after {
+                                // when create pseudo element before and after.
+                                @extend %befor-after-button;
+                                border: 2px solid $mainColorAlt;
+                            }
+                            &:hover::after {
+                                // when hover on pseudo element before and after.
+                                @extend %befor-after-hover-button;
+                                border-radius: 50px;
+                            }
+                            &::before {
+                                // when create pseudo element before and after.
+                                @extend %befor-after-button;
+                                background-color: $mainColor;
+                                z-index: -1;
+                            }
+                            &:hover:before {
+                                // when hover on pseudo element before and after.
+                                @extend %befor-after-hover-button;
+                            }
+                            &:focus {
+                                box-shadow: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// end services
+
+// start pricing
+
+#Pricing {
+    // place holder to make padding top, padding bottom, and  make overflow hidden.
+    @extend %section-padding;
+    background-color: $white;
+    .container {
+        .row {
+            .col {
+                max-width: 400px;
+                .box {
+                    border: 2px solid $titleColor;
+                    position: relative;
+                    .number {
+                        font: {
+                            size: 10em;
+                            weight: 800;
+                        };
+                        color: white;
+                        text-shadow: -1px 0px $mainColorAlt, 0px 1px $mainColorAlt, 1px 0px $mainColorAlt, 0px -1px $mainColorAlt;
+                        position: absolute;
+                        top: -35px;
+                        right: -20px;
+                        width: 115px;
+                        height: 134px;
+                        line-height: 130px;
+                    }
+                    h2 {
+                        color: $titleColor;
+                    }
+                    .price {
+                        span {
+                            display: block;
+                            &.money {
+                                font: {
+                                    size: 120px;
+                                    weight: 800;
+                                }
+                                height: 17  0px;
+                                color: $mainColor;
+                                // make responsive in screen mobile which max-width 991px.
+                                @include tablet {
+                                    font-size: 80px;
+                                    height: 115px;
+                                }
+                                // make responsive in screen mobile which max-width 767px.
+                                @include mobile {
+                                    font: {
+                                        size: 140px;
+                                        weight: 800;
+                                    }
+                                    height: 190px;
+                                    color: $mainColor;
+                                }
+                            }
+                            &.domain {
+                                // make responsive in screen mobile which max-width 991px.
+                                @include tablet {
+                                    font-size: 15px;
+                                }
+                                // make responsive in screen mobile which max-width 767px.
+                                @include mobile {
+                                    font-size: 16px;
+                                }
+                            }
+                        }
+                    }
+                    .benefits {
+                        li {
+                            color: $titleColor;
+                            padding-bottom: 1.5rem;
+                            // make responsive in screen mobile which max-width 991px.
+                            @include tablet {
+                                font-size: 12px;
+                            }
+                             // make responsive in screen mobile which max-width 767px.
+                            @include mobile {
+                                font-size: 16px;
+                                color: $titleColor;
+                                padding-bottom: 1.5rem;
+                            }
+                            svg {
+                                width: 25px;
+                                margin-right: 10px;
+                                font-size: 18px;
+                                // make responsive in screen mobile which max-width 991px.
+                                @include tablet {
+                                    width: 15px;
+                                    font-size: 15px;
+                                    margin-right: 5px;
+                                }
+                                 // make responsive in screen mobile which max-width 767px.
+                                @include mobile {
+                                    width: 25px;
+                                    margin-right: 10px;
+                                    font-size: 18px;
+                                }
+                                &.true {
+                                    color: $mainColor;
+                                }
+                            }
+                        }
+                    }
+                    .subscribe {
+                        @extend %the-buttons;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// end pricing
+
+// start contact
+
+#Contact {
+    // place holder to make padding top, padding bottom, and  make overflow hidden
+    @extend %section-padding;
+    background-color: $titleColor;
+    .container {
+        form {
+                input, 
+                textarea {
+                    border: 1px solid $white;
+                    background-color: transparent;
+                    caret-color: $mainColor;
+                    &:focus {
+                        outline: none;
+                    }
+                    &::placeholder {
+                        color: $whiteDark;
+                        transition: $transition;
+                    }
+                &:focus::placeholder {
+                    opacity: 0;
+                }
+            }
+            input[type= "submit"] {
+                // place holder to change the button's background-color, color, and make transition. 
+                @extend %the-buttons;
+            }
+            textarea {
+                // make responsive in screen mobile which max-width 768px.
+                @include mobile {
+                    height: 150px !important;
+                }
+            }
+        }
+    }
+}
+
+// end contact
+
+// start footer
+
+#footer {
+    span {
+        font-size: 1.1em;
+        a {
+            color: $mainColor !important;
+            transition: $transition;
+            &:hover {
+                color: $mainColorAlt !important;
+            }
+        }
+    }
+    .social {
+        a {
+            transition: $transition;
+            &:hover {
+                color: $mainColor !important;
+            }
+        }
+    }
+}
+
+// end footer
+
+// start animation
+
+@include keyframe(iconInOut) {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@include keyframe(convertColorBtn) {
+    100% {
+        color: $white;
+    }
+}
+
+// end animation

@@ -1,0 +1,88 @@
+@use "../helpers/variables" as *;
+@use "..//helpers/mixin" as *;
+
+
+
+#header {
+    // make position.
+    @include position(absolute, 0, 0);
+    background-color: transparent;
+    z-index: 1000;
+    transition: $transition;
+    &.scrolling {
+        position: fixed;
+        background-color: $titleColor;
+    }
+    .navbar {
+        // make responsive in screen mobile which max-width 767px.
+        @include mobile {
+            background-color: $titleColor;
+        }
+        .container {
+            position: relative;
+            a.navbar-brand{
+                height: 72px;
+                color: $mainColor;
+                font-weight: 800;
+            }
+            .navbar-toggler {
+                &:focus {
+                    box-shadow: none;   
+                }
+            }
+            .navbar-collapse {
+                .navbar-nav {
+                    li{
+                        transition: $transition;
+                        z-index: 1;
+                        a{
+                            color: $white;
+                            // make responsive in screen mobile which min-width 992px.
+                            @include medium {
+                                height: 72px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+                            font: {
+                                size: 14px;
+                            }
+                            position: relative;
+                            transition: $transition;
+                            &::after{
+                                content: "";
+                                width: 0;
+                                height: 100%;
+                                background-color: $mainColor;
+                                // make position.
+                                @include position(absolute, 0, 0);
+                                transition: $transition;
+                                z-index: -1;
+                            }
+                            // make responsive in screen mobile which max-width 991px.
+                            @include tablet {
+                                &:hover::after,
+                                &.active::after {
+                                    width: 100%;
+                                }
+                                &:hover,
+                                &.active {
+                                    color: $white;
+                                }
+                            }
+                            // make responsive in screen mobile which min-width 992px.
+                            @include medium {
+                                &:hover,
+                                &.active {
+                                    color: $mainColor;
+                                }
+                            }
+            
+                        }
+                    }
+                }
+            }   
+        }
+    }
+    
+}

@@ -1,0 +1,93 @@
+@use "../helpers/variables" as *;
+
+// place holder to make padding top, padding bottom, and  make overflow hidden.
+%section-padding {
+    padding-top: $padding;
+    padding-bottom: $padding;
+    overflow: hidden;
+}
+
+// when create pseudo element before and after.
+%befor-after-button {
+    content: "";
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    transition: $transition;
+    border-radius: 50px;
+}
+
+// when hover on pseudo element before and after.
+%befor-after-hover-button {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+}
+
+// place holder to change the button's background-color, color, and make transition. 
+%the-buttons {
+    color: $white;
+    background-color: $mainColor;
+    transition: $transition;
+    &:hover {
+        background-color: $mainColorAlt;
+    }
+}
+
+// make position.
+@mixin position($position, $top, $left) {
+    position: $position;
+    top: $top;
+    left: $left;
+}
+
+ // make responsive in screen mobile which max-width 767px.
+@mixin mobile {
+    @media #{$maxSmall} {
+        @content;
+    }
+}
+
+ // make responsive in screen mobile which max-width 991px.
+@mixin tablet {
+    @media #{$maxMedium} {
+        @content;
+    }
+}
+
+ // make responsive in screen mobile which min-width 768px.
+@mixin small {
+    @media #{$minSmall} {
+        @content;
+    }
+}
+
+ // make responsive in screen mobile which min-width 992px.
+@mixin medium {
+    @media #{$minMedium} {
+        @content;
+    }
+}
+
+ // make responsive in screen mobile which min-width 1200px.
+@mixin large {
+    @media #{$minLarge} {
+        @content;
+    }
+}
+
+// use to make animation.
+@mixin keyframe($name) {
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+
+
+
+
